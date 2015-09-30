@@ -61,7 +61,7 @@ class User extends BaseUser implements AdvancedUserInterface, \Serializable
     protected $entries;
 
     /**
-     * @ORM\OneToOne(targetEntity="Config", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="Config", mappedBy="user", cascade={"persist"})
      */
     protected $config;
 

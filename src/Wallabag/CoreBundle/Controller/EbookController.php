@@ -15,75 +15,45 @@ class EbookController extends Controller
      *
      * @param Request $request
      *
-     * @Route("/all/ebook/{format}", name="ebook_all")
+     * @Route("/export/{category}.{_format}", name="ebook")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getAllAction(Request $request, $format)
+    public function getEntriesAction(Request $request, $_format, $category)
     {
     	$repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
-    	$qb = $repository->getBuilderForAllByUser($this->getUser()->getId());
-    	$entries = $qb->getQuery()->getResult();
+        switch ($category) {
+            case 'all':
+                $qb = $repository->getBuilderForAllByUser($this->getUser()->getId());
+                $entries = $qb->getQuery()->getResult();
+                new Ebook($entries, $_format, 'all');
+                break;
 
+            case 'unread':
+                $repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
+                $qb = $repository->getBuilderForUnreadByUser($this->getUser()->getId());
+                $entries = $qb->getQuery()->getResult();
+                new Ebook($entries, $_format, 'unread');
+                break;
 
-        new Ebook($entries, $format, 'all');
-    }
+            case 'starred':
+                $repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
+                $qb = $repository->getBuilderForStarredByUser($this->getUser()->getId());
+                $entries = $qb->getQuery()->getResult();
+                new Ebook($entries, $_format, 'starred');
+                break;
 
-    /**
-     * Gets unread entries for current user.
-     *
-     * @param Request $request
-     *
-     * @Route("/unread/ebook/{format}", name="ebook_unread")
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function getUnreadAction(Request $request, $format)
-    {
-    	$repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
-    	$qb = $repository->getBuilderForUnreadByUser($this->getUser()->getId());
-    	$entries = $qb->getQuery()->getResult();
+            case 'archive':
+                $repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
+                $qb = $repository->getBuilderForArchiveByUser($this->getUser()->getId());
+                $entries = $qb->getQuery()->getResult();
+                new Ebook($entries, $_format, 'archive');
+                break;
 
-
-        new Ebook($entries, $format, 'unread');
-    }
-
-    /**
-     * Gets read entries for current user.
-     *
-     * @param Request $request
-     *
-     * @Route("/archive/ebook/{format}", name="ebook_archive")
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function getArchiveAction(Request $request, $format)
-    {
-    	$repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
-    	$qb = $repository->getBuilderForArchiveByUser($this->getUser()->getId());
-    	$entries = $qb->getQuery()->getResult();
-
-
-        new Ebook($entries, $format, 'archive');
-    }
-
-    /**
-     * Gets starred entries for current user.
-     *
-     * @param Request $request
-     *
-     * @Route("/starred/ebook/{format}", name="ebook_starred")
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function getstarredAction(Request $request, $format)
-    {
-    	$repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
-    	$qb = $repository->getBuilderForStarredByUser($this->getUser()->getId());
-    	$entries = $qb->getQuery()->getResult();
-
-
-        new Ebook($entries, $format, 'starred');
+            default:
+                # code...
+                break;
+        }
     }
 
     /**
@@ -91,12 +61,12 @@ class EbookController extends Controller
      *
      * @param Entry $entry
      *
-     * @Route("/ebook/{id}/{format}", requirements={"id" = "\d+"}, name="ebook_entry")
+     * @Route("/export/{category}/{id}.{_format}", requirements={"id" = "\d+"}, name="ebook_entry")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getEntryAction(Entry $entry, $format)
+    public function getEntryAction(Entry $entry, $_format, $category)
     {
-    	new Ebook(array($entry), $format, 'entry');
+    	new Ebook(array($entry), $_format, 'entry');
     }
 }

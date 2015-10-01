@@ -91,6 +91,24 @@
         {% endfor %}
     </ul>
 
+    <!-- Export -->
+    <div id="export" class="side-nav fixed right-aligned">
+    {% set currentRoute = app.request.attributes.get('_route') %}
+    {% if currentRoute == 'homepage' %}
+        {% set currentRoute = 'unread' %}
+    {% endif %}
+        <h4 class="center">{% trans %}Export{% endtrans %}</h4>
+        <ul>
+            <li class="bold"><a class="waves-effect" href="{{ path('ebook', { 'category': currentRoute, '_format': 'epub' }) }}">{% trans %}EPUB{% endtrans %}</a></li>
+            <li class="bold"><a class="waves-effect" href="{{ path('ebook', { 'category': currentRoute, '_format': 'epub' }) }}">{% trans %}MOBI{% endtrans %}</a></li>
+            <li class="bold"><a class="waves-effect" href="{{ path('ebook', { 'category': currentRoute, '_format': 'epub' }) }}">{% trans %}PDF{% endtrans %}</a></li>
+            <li class="bold"><a class="waves-effect" href="{{ path('ebook', { 'category': currentRoute, '_format': 'epub' }) }}">{% trans %}XML{% endtrans %}</a></li>
+            <li class="bold"><a class="waves-effect" href="{{ path('ebook', { 'category': currentRoute, '_format': 'epub' }) }}">{% trans %}JSON{% endtrans %}</a></li>
+            <li class="bold"><a class="waves-effect" href="{{ path('ebook', { 'category': currentRoute, '_format': 'epub' }) }}">{% trans %}CSV{% endtrans %}</a></li>
+            <li class="bold"><a class="waves-effect" href="{{ path('ebook', { 'category': currentRoute, '_format': 'epub' }) }}">{% trans %}TXT{% endtrans %}</a></li>
+        </ul>
+    </div>
+
     <!-- Filters -->
     <div id="filters" class="side-nav fixed right-aligned">
         <form action="{{ path('all') }}">

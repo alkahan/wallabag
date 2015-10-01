@@ -16,11 +16,12 @@ class Ebook
 	private $title;
 	private $entries;
 	private $authors = array("wallabag");
+    private $language;
 	private $tags;
 	private $generatedDate;
 	private $method;
 
-	public function __construct($entries, $format = "epub", $method) 
+	public function __construct($entries, $format = "epub", $method)
 	{
 		$this->entries = $entries;
 		$this->format = $format;
@@ -30,6 +31,9 @@ class Ebook
 			//$this->authors[] = $entry->author;
 			$this->tags[] = $entry->getTags();
 		}
+        if (count($entries) === 1) {
+            $this->language = $entries[0]->getLanguage();
+        }
 
 		switch ($this->method) {
 			case 'all':
@@ -41,13 +45,13 @@ class Ebook
 			case 'starred':
 				$this->title = "Starred articles";
 				break;
-			case 'archived':
+			case 'archive':
 				$this->title = "Archived articles";
 				break;
 			case 'entry':
 				$this->title = $this->entries[0]->getTitle();
 				break;
-	
+
 			default:
 				# code...
 				break;
@@ -73,17 +77,16 @@ class Ebook
 		        $book = new EPub(EPub::BOOK_VERSION_EPUB3);
 		        $log->logLine("new EPub()");
 		        $log->logLine("EPub class version: " . EPub::VERSION);
-		        //$log->logLine("EPub Req. Zip version: " . EPub::REQ_ZIP_VERSION);
 		        $log->logLine("Zip version: " . Zip::VERSION);
 		        $log->logLine("getCurrentServerURL: " . $book->getCurrentServerURL());
 		        $log->logLine("getCurrentPageURL..: " . $book->getCurrentPageURL());
 
 		        $book->setTitle($this->title);
 		        $book->setIdentifier("http://$_SERVER[HTTP_HOST]", EPub::IDENTIFIER_URI); // Could also be the ISBN number, prefered for published books, or a UUID.
-		        //$book->setLanguage("en"); // Not needed, but included for the example, Language is mandatory, but EPub defaults to "en". Use RFC3066 Language codes, such as "en", "da", "fr" etc.
+		        $book->setLanguage($this->language); // Not needed, but included for the example, Language is mandatory, but EPub defaults to "en". Use RFC3066 Language codes, such as "en", "da", "fr" etc.
 		        $book->setDescription(_("Some articles saved on my wallabag"));
 		        foreach ($this->authors as $author) {
-		        	$book->setAuthor($author,$author);
+		        	$book->setAuthor($author, $author);
 		        }
 		        $book->setPublisher("wallabag", "wallabag"); // I hope this is a non existant address :)
 		        $book->setDate(time()); // Strictly not needed as the book date defaults to time().
@@ -92,7 +95,7 @@ class Ebook
 
 		        $book->addDublinCoreMetadata(DublinCore::CONTRIBUTOR, "PHP");
 		        $book->addDublinCoreMetadata(DublinCore::CONTRIBUTOR, "wallabag");
-			
+
 		        $log->logLine("Add Cover");
 
 		        $fullTitle = "<h1> " . $this->title . "</h1>\n";
@@ -133,12 +136,12 @@ class Ebook
 				break;
 			case 'pdf':
 
-				break;			
+				break;
 			default:
 				# code...
 				break;
 		}
 
 	}
-	
+
 }

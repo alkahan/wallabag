@@ -10,7 +10,7 @@ use Wallabag\CoreBundle\Helper\Ebook;
 
 class EbookController extends Controller
 {
-	/**
+    /**
      * Gets all entries for current user.
      *
      * @param Request $request
@@ -21,7 +21,7 @@ class EbookController extends Controller
      */
     public function getEntriesAction(Request $request, $_format, $category)
     {
-    	$repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
+        $repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
         switch ($category) {
             case 'all':
                 $qb = $repository->getBuilderForAllByUser($this->getUser()->getId());
@@ -57,7 +57,7 @@ class EbookController extends Controller
     }
 
     /**
-     * Gets one entry content
+     * Gets one entry content.
      *
      * @param Entry $entry
      *
@@ -67,6 +67,6 @@ class EbookController extends Controller
      */
     public function getEntryAction(Entry $entry, $_format, $category)
     {
-    	new Ebook(array($entry), $_format, 'entry');
+        new Ebook(array($entry), $_format, 'entry');
     }
 }

@@ -814,16 +814,16 @@
         },
         {
             "name": "fin1te/safecurl",
-            "version": "v1.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fin1te/safecurl.git",
-                "reference": "98aae75a1f4f8dec2194ce889d418d16c3c877e4"
+                "reference": "a7c3d703c06e827b33f1dcdbdcbe0796beb5a86d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fin1te/safecurl/zipball/98aae75a1f4f8dec2194ce889d418d16c3c877e4",
-                "reference": "98aae75a1f4f8dec2194ce889d418d16c3c877e4",
+                "url": "https://api.github.com/repos/fin1te/safecurl/zipball/a7c3d703c06e827b33f1dcdbdcbe0796beb5a86d",
+                "reference": "a7c3d703c06e827b33f1dcdbdcbe0796beb5a86d",
                 "shasum": ""
             },
             "require": {
@@ -856,7 +856,7 @@
                 "ssrf",
                 "websec"
             ],
-            "time": "2014-05-20 12:10:12"
+            "time": "2014-05-22 14:28:18"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -1505,20 +1505,20 @@
         },
         {
             "name": "j0k3r/graby",
-            "version": "1.0.0-alpha.2",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/j0k3r/graby.git",
-                "reference": "9cc399bbe70f12b302ea65e604a80ea738042599"
+                "reference": "71d4fd5d923192eaeac1e2e292bfd4d932b9384b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/j0k3r/graby/zipball/9cc399bbe70f12b302ea65e604a80ea738042599",
-                "reference": "9cc399bbe70f12b302ea65e604a80ea738042599",
+                "url": "https://api.github.com/repos/j0k3r/graby/zipball/71d4fd5d923192eaeac1e2e292bfd4d932b9384b",
+                "reference": "71d4fd5d923192eaeac1e2e292bfd4d932b9384b",
                 "shasum": ""
             },
             "require": {
-                "fin1te/safecurl": "~1.1",
+                "fin1te/safecurl": "dev-master",
                 "guzzlehttp/guzzle": "^5.2.0",
                 "htmlawed/htmlawed": "^1.1.19",
                 "j0k3r/graby-site-config": "^1.0.0",
@@ -1553,7 +1553,7 @@
                 }
             ],
             "description": "Graby helps you extract article content from web pages",
-            "time": "2015-09-17 11:43:10"
+            "time": "2015-09-30 18:59:50"
         },
         {
             "name": "j0k3r/graby-site-config",
@@ -3724,16 +3724,16 @@
         },
         {
             "name": "willdurand/negotiation",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/Negotiation.git",
-                "reference": "8a84c5956e765f432542fc52a8c6e9aff4508eb3"
+                "reference": "2a59f2376557303e3fa91465ab691abb82945edf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/8a84c5956e765f432542fc52a8c6e9aff4508eb3",
-                "reference": "8a84c5956e765f432542fc52a8c6e9aff4508eb3",
+                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/2a59f2376557303e3fa91465ab691abb82945edf",
+                "reference": "2a59f2376557303e3fa91465ab691abb82945edf",
                 "shasum": ""
             },
             "require": {
@@ -3742,7 +3742,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4-dev"
+                    "dev-master": "1.5-dev"
                 }
             },
             "autoload": {
@@ -3756,7 +3756,7 @@
             ],
             "authors": [
                 {
-                    "name": "William DURAND",
+                    "name": "William Durand",
                     "email": "william.durand1@gmail.com"
                 }
             ],
@@ -3769,7 +3769,7 @@
                 "header",
                 "negotiation"
             ],
-            "time": "2015-07-28 13:10:50"
+            "time": "2015-10-01 07:42:40"
         }
     ],
     "packages-dev": [
@@ -4238,16 +4238,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.9",
+            "version": "4.8.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "73fad41adb5b7bc3a494bb930d90648df1d5e74b"
+                "reference": "463163747474815c5ccd4ae12b5b355ec12158e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/73fad41adb5b7bc3a494bb930d90648df1d5e74b",
-                "reference": "73fad41adb5b7bc3a494bb930d90648df1d5e74b",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/463163747474815c5ccd4ae12b5b355ec12158e8",
+                "reference": "463163747474815c5ccd4ae12b5b355ec12158e8",
                 "shasum": ""
             },
             "require": {
@@ -4306,7 +4306,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-09-20 12:56:44"
+            "time": "2015-10-01 09:14:30"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

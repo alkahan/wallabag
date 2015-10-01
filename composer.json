@@ -54,13 +54,20 @@
         "lexik/form-filter-bundle": "~4.0",
         "j0k3r/graby": "~1.0",
         "friendsofsymfony/user-bundle": "dev-master",
-        "grandt/phpepub": "~4.0"
+        "grandt/phpepub": "~4.0",
+        "wallabag/phpMobi": "dev-master"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "~2.2.0",
         "sensio/generator-bundle": "~2.5",
         "phpunit/phpunit": "~4.4"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/wallabag/phpMobi"
+        }
+    ],
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",

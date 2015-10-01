@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "350d05d95be50b6d93e8a046f784e00c",
+    "hash": "c7289b9857cd130aedc93529a22f086c",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -3566,6 +3566,43 @@
             "time": "2015-09-22 13:59:32"
         },
         {
+            "name": "wallabag/phpMobi",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wallabag/phpMobi.git",
+                "reference": "5137696542f08f8e6a0603c01970c6d3eca9873d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wallabag/phpMobi/zipball/5137696542f08f8e6a0603c01970c6d3eca9873d",
+                "reference": "5137696542f08f8e6a0603c01970c6d3eca9873d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "MOBIClass/MOBI.php"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Nicolas Lœuillet",
+                    "email": "nicolas@loeuillet.org",
+                    "homepage": "http://www.cdetc.fr"
+                }
+            ],
+            "description": "An experimental Mobipocket file creator in PHP.",
+            "homepage": "https://github.com/wallabag/phpMobi",
+            "support": {
+                "source": "https://github.com/wallabag/phpMobi/tree/1.0.0"
+            },
+            "time": "2015-01-19 12:43:17"
+        },
+        {
             "name": "willdurand/hateoas",
             "version": "v2.6.0",
             "source": {
@@ -4787,7 +4824,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "friendsofsymfony/user-bundle": 20
+        "friendsofsymfony/user-bundle": 20,
+        "wallabag/phpmobi": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

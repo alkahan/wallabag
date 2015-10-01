@@ -15,39 +15,41 @@ class EbookController extends Controller
      *
      * @param Request $request
      *
-     * @Route("/export/{category}.{_format}", name="ebook")
+     * @Route("/export/{category}.{format}", name="ebook", requirements={
+     *     "_format": "epub|mobi|pdf|json|xml|txt|csv"
+     * })
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getEntriesAction(Request $request, $_format, $category)
+    public function getEntriesAction(Request $request, $format, $category)
     {
         $repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
         switch ($category) {
             case 'all':
                 $qb = $repository->getBuilderForAllByUser($this->getUser()->getId());
                 $entries = $qb->getQuery()->getResult();
-                new Ebook($entries, $_format, 'all');
+                new Ebook($entries, $format, 'all');
                 break;
 
             case 'unread':
                 $repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
                 $qb = $repository->getBuilderForUnreadByUser($this->getUser()->getId());
                 $entries = $qb->getQuery()->getResult();
-                new Ebook($entries, $_format, 'unread');
+                new Ebook($entries, $format, 'unread');
                 break;
 
             case 'starred':
                 $repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
                 $qb = $repository->getBuilderForStarredByUser($this->getUser()->getId());
                 $entries = $qb->getQuery()->getResult();
-                new Ebook($entries, $_format, 'starred');
+                new Ebook($entries, $format, 'starred');
                 break;
 
             case 'archive':
                 $repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
                 $qb = $repository->getBuilderForArchiveByUser($this->getUser()->getId());
                 $entries = $qb->getQuery()->getResult();
-                new Ebook($entries, $_format, 'archive');
+                new Ebook($entries, $format, 'archive');
                 break;
 
             default:

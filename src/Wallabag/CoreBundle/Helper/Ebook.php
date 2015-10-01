@@ -65,6 +65,7 @@ class Ebook
 
                 break;
             case 'pdf':
+                $this->producePDF();
 
                 break;
             default:
@@ -162,5 +163,41 @@ class Ebook
 
         // we offer file to download
         $mobi->download($this->title.'.mobi');
+    }
+
+    private function producePDF()
+    {
+
+        $pdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('wallabag');
+        $pdf->SetTitle($this->title);
+        $pdf->SetSubject('Articles via wallabag');
+        $pdf->SetKeywords('wallabag');
+
+        $pdf->AddPage();
+        $intro = '<h1>' . $this->title . '</h1><div style="text-align:center;" >
+        <p>' . _('Produced by wallabag with tcpdf') . '</p>
+        <p>'. _('Please open <a href="https://github.com/wallabag/wallabag/issues" >an issue</a> if you have trouble with the display of this E-Book on your device.') . '</p>
+        <img src="themes/_global/img/appicon/apple-touch-icon-152.png" /></div>';
+
+
+        $pdf->writeHTMLCell(0, 0, '', '', $intro, 0, 1, 0, true, '', true);
+
+        foreach ($this->entries as $entry) {
+            foreach ($this->tags as $tag) {
+                $pdf->SetKeywords($tag['value']);
+            }
+            $pdf->AddPage();
+            $html = '<h1>' . $entry->getTitle() . '</h1>';
+            $html .= $entry->getContent();
+            $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+        }
+
+        // set image scale factor
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+        $pdf->Output($this->title . '.pdf', 'D');
     }
 }

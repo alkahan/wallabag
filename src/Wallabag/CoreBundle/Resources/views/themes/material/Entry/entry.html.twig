@@ -108,7 +108,7 @@
                 <ul>
                     {% if export_epub %}<li><a href="{{ path('ebook_entry', { 'id': entry.id, 'category':'id', '_format': 'epub' }) }}" title="Generate ePub file">EPUB</a></li>{% endif %}
                     {% if export_mobi %}<li><a href="{{ path('ebook_entry', { 'id': entry.id, 'category':'id', '_format': 'mobi' }) }}" title="Generate Mobi file">MOBI</a></li>{% endif %}
-                    {% if export_pdf %}<li><del><a href="{{ path('ebook_entry', { 'id': entry.id, 'category':'id', '_format': 'pdf' }) }}" title="Generate PDF file">PDF</a></del> </li>{% endif %}
+                    {% if export_pdf %}<li><a href="{{ path('ebook_entry', { 'id': entry.id, 'category':'id', '_format': 'pdf' }) }}" title="Generate PDF file">PDF</a></li>{% endif %}
                 </ul>
             </div>
         </li>

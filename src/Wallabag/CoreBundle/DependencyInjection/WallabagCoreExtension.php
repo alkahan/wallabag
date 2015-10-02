@@ -12,9 +12,8 @@ class WallabagCoreExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
-        $processor = new Processor();
         $configuration = new Configuration();
-        $config = $processor->processConfiguration($configuration, $configs);
+        $config = $this->processConfiguration($configuration, $configs);
         $container->setParameter('wallabag_core.languages', $config['languages']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));

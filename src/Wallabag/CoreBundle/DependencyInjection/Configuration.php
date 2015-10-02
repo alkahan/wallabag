@@ -12,10 +12,10 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('wallabag_core');
 
-        $rootNode->
-            children()
+        $rootNode
+            ->children()
                 ->arrayNode('languages')
-                ->prototype('scalar')->end()
+                    ->prototype('scalar')->end()
                 ->end()
             ->end()
         ;

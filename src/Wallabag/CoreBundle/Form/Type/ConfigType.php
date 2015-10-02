@@ -13,7 +13,7 @@ class ConfigType extends AbstractType
 
     /**
      * @param array $themes    Themes come from the LiipThemeBundle (liip_theme.themes)
-     * @param array $languages Languages come from configuration
+     * @param array $languages Languages come from configuration, array just code language as key and label as value
      */
     public function __construct($themes, $languages)
     {

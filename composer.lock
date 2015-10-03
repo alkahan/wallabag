@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c7289b9857cd130aedc93529a22f086c",
+    "hash": "45df1f8594a8311c3973853ebcae15b2",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -813,52 +813,6 @@
             "time": "2015-08-05 01:03:42"
         },
         {
-            "name": "fin1te/safecurl",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fin1te/safecurl.git",
-                "reference": "a7c3d703c06e827b33f1dcdbdcbe0796beb5a86d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fin1te/safecurl/zipball/a7c3d703c06e827b33f1dcdbdcbe0796beb5a86d",
-                "reference": "a7c3d703c06e827b33f1dcdbdcbe0796beb5a86d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "fin1te\\SafeCurl": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jack W",
-                    "email": "jack@fin1te.net"
-                }
-            ],
-            "description": "A drop-in replacement for 'curl_exec', designed to prevent SSRF attacks.",
-            "keywords": [
-                "curl",
-                "safe",
-                "safecurl",
-                "ssrf",
-                "websec"
-            ],
-            "time": "2014-05-22 14:28:18"
-        },
-        {
             "name": "friendsofsymfony/rest-bundle",
             "version": "1.7.1",
             "target-dir": "FOS/RestBundle",
@@ -1505,24 +1459,24 @@
         },
         {
             "name": "j0k3r/graby",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/j0k3r/graby.git",
-                "reference": "71d4fd5d923192eaeac1e2e292bfd4d932b9384b"
+                "reference": "f1d655bb680eded0dde8cf26fae1e931f69b6b12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/j0k3r/graby/zipball/71d4fd5d923192eaeac1e2e292bfd4d932b9384b",
-                "reference": "71d4fd5d923192eaeac1e2e292bfd4d932b9384b",
+                "url": "https://api.github.com/repos/j0k3r/graby/zipball/f1d655bb680eded0dde8cf26fae1e931f69b6b12",
+                "reference": "f1d655bb680eded0dde8cf26fae1e931f69b6b12",
                 "shasum": ""
             },
             "require": {
-                "fin1te/safecurl": "dev-master",
                 "guzzlehttp/guzzle": "^5.2.0",
                 "htmlawed/htmlawed": "^1.1.19",
                 "j0k3r/graby-site-config": "^1.0.0",
                 "j0k3r/php-readability": "^1.0",
+                "j0k3r/safecurl": "1.1.1",
                 "monolog/monolog": "^1.13.1",
                 "neitanod/forceutf8": "^1.4",
                 "php": ">=5.4",
@@ -1553,7 +1507,7 @@
                 }
             ],
             "description": "Graby helps you extract article content from web pages",
-            "time": "2015-09-30 18:59:50"
+            "time": "2015-10-01 18:39:53"
         },
         {
             "name": "j0k3r/graby-site-config",
@@ -1653,6 +1607,54 @@
                 "html"
             ],
             "time": "2015-09-23 19:09:38"
+        },
+        {
+            "name": "j0k3r/safecurl",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/j0k3r/safecurl.git",
+                "reference": "3e8594a944ede2b74f3e24e371f2770bbfed6aa5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/j0k3r/safecurl/zipball/3e8594a944ede2b74f3e24e371f2770bbfed6aa5",
+                "reference": "3e8594a944ede2b74f3e24e371f2770bbfed6aa5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "fin1te\\SafeCurl": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Benoist",
+                    "email": "jeremy.benoist@gmail.com"
+                },
+                {
+                    "name": "Jack W",
+                    "email": "jack@fin1te.net",
+                    "role": "Developer (original version)"
+                }
+            ],
+            "description": "A drop-in replacement for 'curl_exec', designed to prevent SSRF attacks.",
+            "keywords": [
+                "curl",
+                "safe",
+                "safecurl",
+                "ssrf",
+                "websec"
+            ],
+            "time": "2015-10-01 18:30:41"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -2580,6 +2582,63 @@
             "time": "2014-03-11 13:46:42"
         },
         {
+            "name": "phpoffice/phpexcel",
+            "version": "1.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPOffice/PHPExcel.git",
+                "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+                "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+                "shasum": ""
+            },
+            "require": {
+                "ext-xml": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPExcel": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Maarten Balliauw",
+                    "homepage": "http://blog.maartenballiauw.be"
+                },
+                {
+                    "name": "Mark Baker"
+                },
+                {
+                    "name": "Franck Lefevre",
+                    "homepage": "http://blog.rootslabs.net"
+                },
+                {
+                    "name": "Erik Tilt"
+                }
+            ],
+            "description": "PHPExcel - OpenXML - Read, Create and Write Spreadsheet documents in PHP - Spreadsheet engine",
+            "homepage": "http://phpexcel.codeplex.com",
+            "keywords": [
+                "OpenXML",
+                "excel",
+                "php",
+                "spreadsheet",
+                "xls",
+                "xlsx"
+            ],
+            "time": "2015-05-01 07:00:55"
+        },
+        {
             "name": "phpoption/phpoption",
             "version": "1.5.0",
             "source": {
@@ -3153,16 +3212,16 @@
         },
         {
             "name": "symfony/monolog-bundle",
-            "version": "v2.8.0",
+            "version": "2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/monolog-bundle.git",
-                "reference": "78883d8c1cfa523ac3a28a482b7793036b243f7d"
+                "reference": "7117b9a145722e3c5768db4585f6ad0643ed5c4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/78883d8c1cfa523ac3a28a482b7793036b243f7d",
-                "reference": "78883d8c1cfa523ac3a28a482b7793036b243f7d",
+                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/7117b9a145722e3c5768db4585f6ad0643ed5c4a",
+                "reference": "7117b9a145722e3c5768db4585f6ad0643ed5c4a",
                 "shasum": ""
             },
             "require": {
@@ -3208,7 +3267,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2015-09-29 17:13:11"
+            "time": "2015-10-02 11:51:59"
         },
         {
             "name": "symfony/swiftmailer-bundle",
@@ -4347,16 +4406,16 @@
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.3.7",
+            "version": "2.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "5e2645ad49d196e020b85598d7c97e482725786a"
+                "reference": "ac8e7a3db35738d56ee9a76e78a4e03d97628983"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/5e2645ad49d196e020b85598d7c97e482725786a",
-                "reference": "5e2645ad49d196e020b85598d7c97e482725786a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/ac8e7a3db35738d56ee9a76e78a4e03d97628983",
+                "reference": "ac8e7a3db35738d56ee9a76e78a4e03d97628983",
                 "shasum": ""
             },
             "require": {
@@ -4399,7 +4458,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-08-19 09:14:08"
+            "time": "2015-10-02 06:51:40"
         },
         {
             "name": "sebastian/comparator",

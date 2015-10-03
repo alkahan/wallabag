@@ -21,7 +21,7 @@ class EbookController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getEntriesAction(Request $request, $format, $category)
+    public function getEntriesAction($format, $category)
     {
         $repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
         switch ($category) {
@@ -32,21 +32,18 @@ class EbookController extends Controller
                 break;
 
             case 'unread':
-                $repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
                 $qb = $repository->getBuilderForUnreadByUser($this->getUser()->getId());
                 $entries = $qb->getQuery()->getResult();
                 new Ebook($entries, $format, 'unread');
                 break;
 
             case 'starred':
-                $repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
                 $qb = $repository->getBuilderForStarredByUser($this->getUser()->getId());
                 $entries = $qb->getQuery()->getResult();
                 new Ebook($entries, $format, 'starred');
                 break;
 
             case 'archive':
-                $repository = $this->getDoctrine()->getRepository('WallabagCoreBundle:Entry');
                 $qb = $repository->getBuilderForArchiveByUser($this->getUser()->getId());
                 $entries = $qb->getQuery()->getResult();
                 new Ebook($entries, $format, 'archive');

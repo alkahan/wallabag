@@ -26,7 +26,6 @@ class Ebook
         $this->method = $method;
         $this->generatedDate = new \DateTime('now');
         foreach ($entries as $entry) {
-            //$this->authors[] = $entry->author;
             $this->tags[] = $entry->getTags();
         }
         if (count($entries) === 1) {
@@ -62,14 +61,16 @@ class Ebook
 
             case 'mobi':
                 $this->produceMobi();
-
                 break;
+
             case 'pdf':
                 $this->producePDF();
-
                 break;
+
             case 'csv':
                 $this->produceCSV();
+                break;
+
             default:
                 # code...
                 break;

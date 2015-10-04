@@ -55,8 +55,7 @@
         "j0k3r/graby": "~1.0",
         "friendsofsymfony/user-bundle": "dev-master",
         "grandt/phpepub": "~4.0",
-        "wallabag/phpMobi": "dev-master",
-        "phpoffice/phpexcel": "~1.8"
+        "wallabag/phpMobi": "dev-master"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "~2.2.0",

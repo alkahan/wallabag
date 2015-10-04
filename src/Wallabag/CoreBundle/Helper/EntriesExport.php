@@ -247,37 +247,22 @@ class EntriesExport
 
     private function produceCSV()
     {
-        $csv = new \PHPExcel();
+        header('Content-type: application/csv');
+        header('Content-Disposition: attachment; filename="' . $this->title . '.csv"');
+        header("Content-Transfer-Encoding: UTF-8");
 
-        $csv->getProperties()->setCreator("wallabag");
-        $csv->getProperties()->setLastModifiedBy("wallabag");
-        $csv->getProperties()->setTitle($this->title);
-        $csv->getProperties()->setSubject($this->title);
-        $csv->getProperties()->setDescription("My entries in wallabag");
+        $output = fopen('php://output', 'a');
 
-        $row = 1;
-        $csv->getActiveSheet()->setCellValue('A'.$row, 'Title')
-                              ->setCellValue('B'.$row, 'URL')
-                              ->setCellValue('C'.$row, 'Content')
-                              ->setCellValue('D'.$row, 'Tags')
-                              ->setCellValue('E'.$row, 'MIME Type')
-                              ->setCellValue('F'.$row, 'Language');
-        $row++;
+        fputcsv($output, array('Title', 'URL', 'Content', 'Tags', 'MIME Type', 'Language'));
         foreach ($this->entries as $entry) {
-            $csv->getActiveSheet()->setCellValue('A'.$row, $entry->getTitle())
-                                  ->setCellValue('B'.$row, $entry->getURL())
-                                  ->setCellValue('C'.$row, $entry->getContent())
-                                  ->setCellValue('D'.$row, implode(', ', $entry->getTags()->toArray()))
-                                  ->setCellValue('E'.$row, $entry->getMimetype())
-                                  ->setCellValue('F'.$row, $entry->getLanguage());
-        $row++;
+            fputcsv($output, array($entry->getTitle(),
+                                   $entry->getURL(),
+                                   $entry->getContent(),
+                                   implode(', ', $entry->getTags()->toArray()),
+                                   $entry->getMimetype(),
+                                   $entry->getLanguage()));
         }
-        ob_end_clean();
-        $csv->getActiveSheet()->setTitle('Simple');
-        header('Content-type: text/csv');
-        header('Content-Disposition: attachment;filename="' . $this->title . '.csv"');
-        $csvWriter = \PHPExcel_IOFactory::createWriter($csv, 'CSV');
-        $csvWriter->save('php://output');
-        exit(); // dirty way of hiding sf2 complaning of missing template
+        fclose($output);
+        exit();
     }
 }

@@ -4,7 +4,6 @@ namespace Wallabag\CoreBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Wallabag\CoreBundle\Entity\Entry;
 use Wallabag\CoreBundle\Helper\EntriesExport;
 
@@ -16,7 +15,6 @@ class ExportController extends Controller
      * @Route("/export/{category}.{format}", name="ebook", requirements={
      *     "_format": "epub|mobi|pdf|json|xml|txt|csv"
      * })
-     *
      */
     public function getEntriesAction($format, $category)
     {
@@ -42,7 +40,7 @@ class ExportController extends Controller
                 break;
         }
 
-        $methodBuilder = 'getBuilderFor' . $method . 'ByUser';
+        $methodBuilder = 'getBuilderFor'.$method.'ByUser';
         $qb = $repository->$methodBuilder($this->getUser()->getId());
         $entries = $qb->getQuery()->getResult();
 
@@ -57,7 +55,6 @@ class ExportController extends Controller
      * @param Entry $entry
      *
      * @Route("/export/id/{id}.{format}", requirements={"id" = "\d+"}, name="ebook_entry")
-     *
      */
     public function getEntryAction(Entry $entry, $format)
     {

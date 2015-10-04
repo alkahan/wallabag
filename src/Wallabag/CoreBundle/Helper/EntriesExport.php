@@ -2,10 +2,8 @@
 
 namespace Wallabag\CoreBundle\Helper;
 
-use Wallabag\CoreBundle\Entity\Entry;
 use PHPePub\Core\EPub;
 use PHPePub\Core\Structure\OPF\DublinCore;
-use PHPZip\Zip\File\Zip;
 
 class EntriesExport
 {
@@ -30,9 +28,9 @@ class EntriesExport
     }
 
     /**
-     * Sets the category of which we want to get articles, or just one entry
+     * Sets the category of which we want to get articles, or just one entry.
      *
-     * @param $method Method to get articles
+     * @param string $method Method to get articles
      */
     public function setMethod($method)
     {
@@ -59,6 +57,11 @@ class EntriesExport
         }
     }
 
+    /**
+     * Sets the output format.
+     *
+     * @param string $format
+     */
     public function exportAs($format)
     {
         $this->format = $format;
@@ -87,7 +90,7 @@ class EntriesExport
 
     private function produceEpub()
     {
-        /**
+        /*
          * Start and End of the book
          */
         $content_start =
@@ -103,7 +106,7 @@ class EntriesExport
 
         $book = new EPub(EPub::BOOK_VERSION_EPUB3);
 
-        /**
+        /*
          * Book metadata
          */
 
@@ -112,8 +115,7 @@ class EntriesExport
         $book->setLanguage($this->language); // Not needed, but included for the example, Language is mandatory, but EPub defaults to "en". Use RFC3066 Language codes, such as "en", "da", "fr" etc.
         $book->setDescription(_('Some articles saved on my wallabag'));
 
-        foreach ($this->authors as $author)
-        {
+        foreach ($this->authors as $author) {
             $book->setAuthor($author, $author);
         }
 
@@ -124,13 +126,11 @@ class EntriesExport
         $book->addDublinCoreMetadata(DublinCore::CONTRIBUTOR, 'PHP');
         $book->addDublinCoreMetadata(DublinCore::CONTRIBUTOR, 'wallabag');
 
-        /**
+        /*
          * Front page
          */
 
-        $fullTitle = '<h1> '.$this->title."</h1>\n";
-
-        $book->setCoverImage('Cover.png', file_get_contents('themes/_global/img/appicon/apple-touch-icon-152.png'), 'image/png', $fullTitle);
+        $book->setCoverImage('Cover.png', file_get_contents('themes/_global/img/appicon/apple-touch-icon-152.png'), 'image/png');
 
         $cover = $content_start.'<div style="text-align:center;"><p>'._('Produced by wallabag with PHPePub').'</p><p>'._('Please open <a href="https://github.com/wallabag/wallabag/issues" >an issue</a> if you have trouble with the display of this E-Book on your device.').'</p></div>'.$bookEnd;
 
@@ -138,7 +138,7 @@ class EntriesExport
 
         $book->buildTOC();
 
-        /**
+        /*
          * Adding actual entries
          */
 
@@ -147,7 +147,7 @@ class EntriesExport
                     $book->setSubject($tag['value']);
                 }
 
-            $chapter = $content_start . $entry->getContent() . $bookEnd;
+            $chapter = $content_start.$entry->getContent().$bookEnd;
             $book->addChapter($entry->getTitle(), htmlspecialchars($entry->getTitle()).'.html', $chapter, true, EPub::EXTERNAL_REF_ADD);
         }
         $book->finalize();
@@ -159,7 +159,7 @@ class EntriesExport
         $mobi = new \MOBI();
         $content = new \MOBIFile();
 
-        /**
+        /*
          * Book metadata
          */
 
@@ -167,7 +167,7 @@ class EntriesExport
         $content->set('author', implode($this->authors));
         $content->set('subject', $this->title);
 
-        /**
+        /*
          * Front page
          */
 
@@ -175,7 +175,7 @@ class EntriesExport
         $content->appendImage(imagecreatefrompng('themes/_global/img/appicon/apple-touch-icon-152.png'));
         $content->appendPageBreak();
 
-        /**
+        /*
          * Adding actual entries
          */
 
@@ -195,10 +195,9 @@ class EntriesExport
 
     private function producePDF()
     {
-
         $pdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
-        /**
+        /*
          * Book metadata
          */
 
@@ -208,33 +207,29 @@ class EntriesExport
         $pdf->SetSubject('Articles via wallabag');
         $pdf->SetKeywords('wallabag');
 
-        /**
+        /*
          * Front page
          */
 
         $pdf->AddPage();
-        $intro = '<h1>' . $this->title . '</h1><div style="text-align:center;" >
-        <p>' . _('Produced by wallabag with tcpdf') . '</p>
-        <p>'. _('Please open <a href="https://github.com/wallabag/wallabag/issues" >an issue</a> if you have trouble with the display of this E-Book on your device.') . '</p>
+        $intro = '<h1>'.$this->title.'</h1><div style="text-align:center;" >
+        <p>'._('Produced by wallabag with tcpdf').'</p>
+        <p>'._('Please open <a href="https://github.com/wallabag/wallabag/issues" >an issue</a> if you have trouble with the display of this E-Book on your device.').'</p>
         <img src="themes/_global/img/appicon/apple-touch-icon-152.png" /></div>';
-
 
         $pdf->writeHTMLCell(0, 0, '', '', $intro, 0, 1, 0, true, '', true);
 
-
-        /**
+        /*
          * Adding actual entries
          */
 
-        foreach ($this->entries as $entry)
-        {
-            foreach ($this->tags as $tag)
-            {
+        foreach ($this->entries as $entry) {
+            foreach ($this->tags as $tag) {
                 $pdf->SetKeywords($tag['value']);
             }
 
             $pdf->AddPage();
-            $html = '<h1>' . $entry->getTitle() . '</h1>';
+            $html = '<h1>'.$entry->getTitle().'</h1>';
             $html .= $entry->getContent();
             $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
         }
@@ -242,14 +237,14 @@ class EntriesExport
         // set image scale factor
         $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
-        $pdf->Output($this->title . '.pdf', 'D');
+        $pdf->Output($this->title.'.pdf', 'D');
     }
 
     private function produceCSV()
     {
         header('Content-type: application/csv');
-        header('Content-Disposition: attachment; filename="' . $this->title . '.csv"');
-        header("Content-Transfer-Encoding: UTF-8");
+        header('Content-Disposition: attachment; filename="'.$this->title.'.csv"');
+        header('Content-Transfer-Encoding: UTF-8');
 
         $output = fopen('php://output', 'a');
 
@@ -260,7 +255,7 @@ class EntriesExport
                                    $entry->getContent(),
                                    implode(', ', $entry->getTags()->toArray()),
                                    $entry->getMimetype(),
-                                   $entry->getLanguage()));
+                                   $entry->getLanguage(), ));
         }
         fclose($output);
         exit();
